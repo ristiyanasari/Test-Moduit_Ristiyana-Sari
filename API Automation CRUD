@@ -1,0 +1,93 @@
+# Create User
+pm.test("Response status code is 201", function () {
+    pm.response.to.have.status(201);
+});
+
+pm.test("Response has the required fields", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.be.an('object');
+    pm.expect(jsonData.name).to.exist.and.to.be.a('string');
+    pm.expect(jsonData.job).to.exist.and.to.be.a('string');
+    pm.expect(jsonData.id).to.exist.and.to.be.a('string');
+    pm.expect(jsonData.createdAt).to.exist.and.to.be.a('string');
+});
+
+pm.test("Name is a non-empty string", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Value should not be empty");
+});
+
+pm.test("Job is a non-empty string", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.job).to.be.a('string').and.to.have.lengthOf.at.least(1, "Job should not be empty");
+});
+
+
+#Get User
+
+pm.test("Response status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+
+pm.test("Email is in a valid format", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData).to.be.an('object');
+    pm.expect(responseData.data.email).to.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/);
+});
+
+
+pm.test("First name and last name are non-empty strings", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.data.first_name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Value should not be empty");
+    pm.expect(responseData.data.last_name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Value should not be empty");
+});
+
+
+pm.test("Avatar is not null or empty", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.data.avatar).to.not.be.null.and.to.not.be.empty;
+});
+
+
+#Update User
+
+
+pm.test("Response status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+
+pm.test("Name field is required", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.name).to.exist.and.to.have.lengthOf.at.least(1, "Name field is required");
+});
+
+
+pm.test("Job field is required", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData).to.be.an('object');
+    pm.expect(responseData.job).to.exist.and.to.have.lengthOf.at.least(1, "Job field is required");
+});
+
+
+pm.test("updatedAt field is present", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData).to.be.an('object');
+    pm.expect(responseData.updatedAt).to.exist;
+});
+
+
+pm.test("updatedAt field is in a valid date format", function () {
+    const responseData = pm.response.json();
+
+    pm.expect(responseData.updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/, "updatedAt field should be in a valid date format");
+});
+
+
