@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Register Moduit</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>1621b375-0971-460e-b167-5b4658093943</testCaseGuid>
+   <variableLinks>
+      <testDataLinkId></testDataLinkId>
+      <type>DEFAULT</type>
+      <value></value>
+      <variableId>1412b63e-8067-49e8-afd6-6949394a212f</variableId>
+   </variableLinks>
+   <variable>
+      <defaultValue>'https://reksa.moduit.id/idn/sign_in'</defaultValue>
+      <description></description>
+      <id>1412b63e-8067-49e8-afd6-6949394a212f</id>
+      <masked>false</masked>
+      <name>linkmoduit</name>
+   </variable>
+</TestCaseEntity>
